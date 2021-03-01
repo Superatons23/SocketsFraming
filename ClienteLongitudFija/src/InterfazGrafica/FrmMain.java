@@ -29,7 +29,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
     public FrmMain() {
 
         this.clienteSocket = new SocketCliente(this, "localhost", 4444);
-
+      
         initComponents();
     }
 
@@ -38,7 +38,9 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
         t.start();
         
     }
-
+ public void agregarObserver(){
+      this.clienteSocket.agregarObserver(this);
+ }
     public void registrarNombre() {
         clienteSocket.sendRemote("javier");
     }
@@ -140,6 +142,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
             clienteSocket.sendRemote(null);
             t.stop();
             clienteSocket.cerrarConexion();
+            
         } catch (IOException ex) {
             Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
         }

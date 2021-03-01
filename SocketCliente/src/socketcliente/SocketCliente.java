@@ -36,6 +36,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
@@ -65,6 +66,7 @@ public class SocketCliente extends java.util.Observable implements Runnable {
         this.frame = frame;
         this.port = port;
         this.adress = adress;
+       
     }
 
     @Override
@@ -85,6 +87,7 @@ public class SocketCliente extends java.util.Observable implements Runnable {
                 this.setChanged();
                 this.notifyObservers(fromServer);
                 this.clearChanged();
+                
                 // invokeToGUI(fromServer);
             }
             System.out.println("cerrando conexion ");
@@ -115,6 +118,11 @@ public class SocketCliente extends java.util.Observable implements Runnable {
                 //  frame.procesInput(cadena);
             }
         });
+    }
+    
+    public void agregarObserver(Observer observer)
+    {
+         this.addObserver(observer);
     }
 
     public synchronized void sendRemote(String cadena) {

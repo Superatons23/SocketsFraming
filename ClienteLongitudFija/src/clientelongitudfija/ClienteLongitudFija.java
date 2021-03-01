@@ -21,10 +21,12 @@ public class ClienteLongitudFija {
    FrmMain i = new FrmMain();
    i.startThread();
     i.setVisible(true);
+    i.agregarObserver();
    try
         {
             Thread.sleep(1000);
             i.registrarNombre();
+            
         }catch(InterruptedException e){}
     
      

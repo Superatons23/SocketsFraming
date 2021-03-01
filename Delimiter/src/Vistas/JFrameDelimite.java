@@ -67,7 +67,7 @@ public class JFrameDelimite extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jComboBoxDestinatario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JSON", "CADENA", " " }));
+        jComboBoxDestinatario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JSON", "Longitud Fija", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,6 +121,6 @@ public class JFrameDelimite extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        System.out.println(arg);
     }
 }

@@ -5,7 +5,6 @@
  */
 package Server.Interpreter;
 
-import Dominio.Persona;
 
 /**
  *
@@ -17,17 +16,17 @@ public class CadenaExpression  implements Expression
     @Override
     public String interpret(String context) {
      //code
-     
-     String[] arrSplit = context.split(",");   
-        for (int i = 0; i < arrSplit.length; i++) {
-            System.out.println(arrSplit[i]);
-        }
-        
-        Persona p = new Persona(arrSplit[0],Float.valueOf(arrSplit[1]),Float.valueOf(arrSplit[2]));
-        
-        p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
+//     
+//     String[] arrSplit = context.split(",");   
+//        for (int i = 0; i < arrSplit.length; i++) {
+//            System.out.println(arrSplit[i]);
+//        }
+//        
+//        Persona p = new Persona(arrSplit[0],Float.valueOf(arrSplit[1]),Float.valueOf(arrSplit[2]));
+//        
+//        p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
          
-        return String.valueOf(p.getNombre())+","+String.valueOf(p.getEstatura())+","+String.valueOf(p.getPeso())+","+String.valueOf(p.getIMC());
+        return "panocha";
     }
 
 

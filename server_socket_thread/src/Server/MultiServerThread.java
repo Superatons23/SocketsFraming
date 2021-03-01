@@ -16,7 +16,6 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Dominio.Persona;
 
 /**
  *

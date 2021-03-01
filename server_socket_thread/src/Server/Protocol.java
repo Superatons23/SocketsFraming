@@ -36,11 +36,12 @@ public Protocol(){
 
     public String processInput(String cadena,String to,String from) {
        
-        if(to.equals("fijo")&&from.equals("delimiter"))
-        {
+        if(to.equals("Longitud Fija")&&from.equals("delimiter"))
+        { System.out.println("convirtiendo delimiter to Longitud fisica");
              expression = new DelimiterToCadena();
             return expression.interpret(cadena);
-        }else if(to.equals("Longitud Fija")&&from.equals("delimiter")){
+        }else if(to.equals("JSON")&&from.equals("delimiter")){
+             System.out.println("convirtiendo delimiter to JSON");
             expression = new DelimiterToJson();
             return expression.interpret(cadena);
         }else if (to.equals("Longitud Fija")&&from.equals("JSON")){

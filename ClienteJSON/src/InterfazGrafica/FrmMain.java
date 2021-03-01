@@ -16,6 +16,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -106,12 +108,8 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(77, 77, 77)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,8 +122,9 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
                         .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEnviar))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonEnviar)))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,21 +150,22 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        
-        
         mensaje=new Mensaje(to, nombre, this.jTextField1.getText());
-        String JSON_DATA =
-     "{" 
-   + "  \"Mensaje\": [" 
-   + "    {" 
-   + "      \"mensaje\": \""+mensaje.getMensaje()+"\"," 
-   + "      \"to\": \""+mensaje.getTo()+"\"," 
-   + "      \"from\" : \""+mensaje.getFrom()+"\""
-   + "    }" 
-   + "  ]" 
-   + "}"; 
+        JSONObject jsonObject = new JSONObject(mensaje);
+String myJson = jsonObject.toString();
         
-        clienteSocket.sendRemote(JSON_DATA);
+//        String JSON_DATA =
+//     "{" 
+//   + "  \"Mensaje\": [" 
+//   + "    {" 
+//   + "      \"mensaje\": \""+mensaje.getMensaje()+"\"," 
+//   + "      \"to\": \""+mensaje.getTo()+"\"," 
+//   + "      \"from\" : \""+mensaje.getFrom()+"\""
+//   + "    }" 
+//   + "  ]" 
+//   + "}"; 
+//        
+        clienteSocket.sendRemote(myJson);
 
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
@@ -189,6 +189,9 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        
+        
         this.to=this.jComboBox1.getSelectedItem().toString();
         System.out.println(to);
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -210,8 +213,25 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
+        
+//        Mensaje m;
+//    final JSONObject obj = new JSONObject(arg);
+//    final JSONArray geodata = obj.getJSONArray("Mensaje");
+//    final int n = geodata.length();
+//        System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
+//      final JSONObject person = geodata.getJSONObject(0);
+//      System.out.println(person.getString("mensaje"));
+//      System.out.println(person.getString("from"));
+//      System.out.println(person.getString("to"));
+//      System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//      m=new Mensaje(person.getString("to"), person.getString("from"), person.getString("mensaje"));
+//    
+//    
+        
         System.out.println(arg);
         this.jTextField2.setText(arg.toString());
+        
+        
     }
 
 }

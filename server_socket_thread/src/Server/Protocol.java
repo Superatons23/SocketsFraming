@@ -11,6 +11,7 @@ import java.util.List;
 import Server.Interpreter.CadenaExpression;
 import Server.Interpreter.Expression;
 import Server.Interpreter.JSONExpression;
+import Server.Interpreter.JSONtoFijaExpression;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Protocol {
      */
     Expression cadenaExpression;
 public Protocol(){
-      cadenaExpression = new  JSONExpression();
+      cadenaExpression = new  JSONtoFijaExpression();
 }
   
   

@@ -30,12 +30,12 @@ public class MultiServer {
             
             while (listening) {
 
-                System.out.println("hola");
+                
                 new MultiServerThread(serverSocket.accept()).start();
-                System.out.println("adios");
+                
 
             }
-            System.out.println("asdadsasdas");
+            
             serverSocket.close();
         } catch (IOException e) {
             System.err.println("Could not listen on port " + portNumber);

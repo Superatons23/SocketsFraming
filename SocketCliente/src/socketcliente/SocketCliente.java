@@ -1,11 +1,11 @@
-package InterfazGrafica;
+package socketcliente;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import InterfazGrafica.FrmMain;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
@@ -30,11 +31,15 @@ public class SocketCliente extends Thread {
     ObjectOutputStream out = null;
     ObjectInputStream in = null;
     boolean isListening = true;
+    String adress;
+    int port;
 
-    FrmMain frame;
+    JFrame frame;
 
-    public SocketCliente(FrmMain frame) {
+    public SocketCliente(JFrame frame,String adress,int port) {
         this.frame = frame;
+        this.port=port;
+        this.adress=adress;
     }
 
     @Override
@@ -42,7 +47,7 @@ public class SocketCliente extends Thread {
 
         try {
             System.out.println("conectando con servidor");
-            kkSocket = new Socket("localhost", 4444);
+            kkSocket = new Socket(this.adress, this.port);
             out = new ObjectOutputStream(kkSocket.getOutputStream());
             in = new ObjectInputStream(kkSocket.getInputStream());
 
@@ -92,7 +97,7 @@ public class SocketCliente extends Thread {
         try {
 
             this.out.writeUnshared(cadena);
-            
+            this.out.flush();
             // writeUnshared() is like writeObject(), but always writes
             // a new copy of the object. The flush (optional) forces the
             // bytes out right now.

@@ -21,10 +21,12 @@ public class ClienteServer implements Runnable {
     private Socket socket;
     private String blackBoardObject;
     private ObjectOutputStream output;
+    private String nombre;
 
-    public ClienteServer(Socket socket, ObjectOutputStream output) {
+    public ClienteServer(Socket socket, ObjectOutputStream output,String nombre) {
         this.output = output;
         this.socket = socket;
+        this.nombre=nombre;
     }
 
     public String getClienteBBO() {

@@ -15,12 +15,20 @@ import InterfazGrafica.FrmMain;
 public class ClienteLongitudFija {
 
     /**
-     * @param args the command line arguments
+     * @param args the command line argumentsW
      */
     public static void main(String[] args) {
    FrmMain i = new FrmMain();
    i.startThread();
-     i.setVisible(true);
+    i.setVisible(true);
+   try
+        {
+            Thread.sleep(1000);
+            i.registrarNombre();
+        }catch(InterruptedException e){}
+    
+     
+     
     }
     
 }

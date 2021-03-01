@@ -53,14 +53,18 @@ public class MultiServerThread extends Thread {
             String input = null;
             Protocol kkp = new Protocol();
            boolean isListening=true;
-            if(clientes.size()!=4)
-            {
+           
                 
-                //agrega al cliente
-                clientes.add(new ClienteServer(this.socket, this.output));
+               
                    //recibir bbos
              this.in = new ObjectInputStream(socket.getInputStream());
-
+             
+              //agrega al cliente
+              
+              input = (String) in.readObject(); 
+              clientes.add(new ClienteServer(this.socket, this.output,input));
+            System.out.println("su nombre es:->"+input);
+             
                 while (( input = (String) in.readObject())!=null) {
                    
                 System.out.println("reciviendo data from cliente");
@@ -77,7 +81,7 @@ public class MultiServerThread extends Thread {
                
                 
                 
-            }
+            
           
 
          

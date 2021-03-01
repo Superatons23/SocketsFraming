@@ -79,7 +79,18 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
         jLabel5.setText("LONGITUD FIJA");
 
+<<<<<<< HEAD
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CADENA", "JSON", "DELIMITER", " " }));
+=======
+        jTextField2.setEditable(false);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+>>>>>>> 7b90bc7fb4d5288bc2ece7b973ffd751f9f00a51
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,7 +141,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
 
-        clienteSocket.sendRemote("franciso javier barreras cebreros,1.5,60.90");
+        clienteSocket.sendRemote(this.jTextField1.getText());
 
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
@@ -149,6 +160,10 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEnviar;
@@ -166,6 +181,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         System.out.println(arg);
+        this.jTextField2.setText(arg.toString());
     }
 
 }

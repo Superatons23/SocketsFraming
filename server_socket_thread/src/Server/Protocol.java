@@ -8,9 +8,9 @@ package Server;
 
 import java.util.ArrayList;
 import java.util.List;
-import Dominio.Persona;
 import Server.Interpreter.CadenaExpression;
 import Server.Interpreter.Expression;
+import Server.Interpreter.JSONExpression;
 
 /**
  *
@@ -24,7 +24,7 @@ public class Protocol {
      */
     Expression cadenaExpression;
 public Protocol(){
-      cadenaExpression = new  CadenaExpression();
+      cadenaExpression = new  JSONExpression();
 }
   
   

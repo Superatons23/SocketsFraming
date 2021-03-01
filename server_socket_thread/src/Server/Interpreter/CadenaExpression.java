@@ -5,6 +5,8 @@
  */
 package Server.Interpreter;
 
+import dominio.Mensaje;
+import org.json.JSONObject;
 
 /**
  *
@@ -16,17 +18,22 @@ public class CadenaExpression  implements Expression
     @Override
     public String interpret(String context) {
      //code
-//     
-//     String[] arrSplit = context.split(",");   
-//        for (int i = 0; i < arrSplit.length; i++) {
-//            System.out.println(arrSplit[i]);
-//        }
-//        
-//        Persona p = new Persona(arrSplit[0],Float.valueOf(arrSplit[1]),Float.valueOf(arrSplit[2]));
-//        
-//        p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
+     
+     String[] arrSplit = context.split(",");   
+        for (int i = 0; i < arrSplit.length; i++) {
+            System.out.println(arrSplit[i]);
+        }
+        System.out.println(arrSplit[1]+" "+arrSplit[0]+" "+arrSplit[2]);
+        Mensaje  m = new Mensaje(arrSplit[1],arrSplit[0],arrSplit[2]);
+        
+        //p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
+         JSONObject jsonObject = new JSONObject(m);
+         String json = jsonObject.toString();
          
-        return "panocha";
+
+        //return String.valueOf(m.getFrom())+","+String.valueOf(m.getTo())+","+String.valueOf(m.getMensaje());
+       return json;
+   
     }
 
 

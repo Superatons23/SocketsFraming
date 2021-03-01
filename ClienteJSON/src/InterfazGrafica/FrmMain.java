@@ -24,8 +24,8 @@ import org.json.JSONObject;
  * @author javie
  */
 public class FrmMain extends javax.swing.JFrame implements Observer{
-    private String to="Delimiter";
-    private String nombre="Jesus";
+    private String to="Longitud Fija";
+    private String nombre="JSON";
     private Mensaje mensaje;
     private final SocketCliente clienteSocket;
     Thread t;
@@ -46,8 +46,9 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
       this.clienteSocket.agregarObserver(this);
  }
     public void registrarNombre() {
-        this.lbnombre.setText(nombre);
-        clienteSocket.sendRemote(nombre);
+         clienteSocket.sendRemote("JSON");
+        this.lbnombre.setText("chuy");
+       
     }
 
     /**
@@ -150,7 +151,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        mensaje=new Mensaje(to, nombre, this.jTextField1.getText());
+        mensaje=new Mensaje(to, "JSON", this.jTextField1.getText());
         JSONObject jsonObject = new JSONObject(mensaje);
 String myJson = jsonObject.toString();
         
@@ -164,8 +165,10 @@ String myJson = jsonObject.toString();
 //   + "    }" 
 //   + "  ]" 
 //   + "}"; 
-//        
-        clienteSocket.sendRemote(myJson);
+//         clienteSocket.sendRemote("JSON");
+        
+clienteSocket.sendRemote(to);
+clienteSocket.sendRemote(myJson);
 
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
@@ -193,7 +196,8 @@ String myJson = jsonObject.toString();
         
         
         this.to=this.jComboBox1.getSelectedItem().toString();
-        System.out.println(to);
+       
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 

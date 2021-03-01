@@ -20,10 +20,11 @@ import java.util.logging.Logger;
  *
  * @author javie
  */
-public class FrmMain extends javax.swing.JFrame {
+public class FrmMain extends javax.swing.JFrame implements Observer{
 
     private Persona persona;
     private final SocketCliente clienteSocket;
+    Thread t;
 
     public FrmMain() {
 
@@ -33,7 +34,9 @@ public class FrmMain extends javax.swing.JFrame {
     }
 
     public void startThread() {
-        clienteSocket.start();
+         t = new Thread(clienteSocket);
+        t.start();
+        
     }
 
     public void registrarNombre() {
@@ -135,7 +138,7 @@ public class FrmMain extends javax.swing.JFrame {
 
             System.out.println("cerrando conexion...");
             clienteSocket.sendRemote(null);
-            clienteSocket.stop();
+            t.stop();
             clienteSocket.cerrarConexion();
         } catch (IOException ex) {
             Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,6 +158,11 @@ public class FrmMain extends javax.swing.JFrame {
 
     public void procesInput(String cadena) {
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println(arg);
     }
 
 }

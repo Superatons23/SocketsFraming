@@ -5,7 +5,6 @@ package socketcliente;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +14,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -22,7 +23,31 @@ import javax.swing.SwingUtilities;
  *
  * @author javier.barreras
  */
-public class SocketCliente extends Thread {
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+/**
+ *
+ * @author javier.barreras
+ */
+public class SocketCliente extends java.util.Observable implements Runnable {
 
     /**
      * @param args the command line arguments
@@ -36,10 +61,10 @@ public class SocketCliente extends Thread {
 
     JFrame frame;
 
-    public SocketCliente(JFrame frame,String adress,int port) {
+    public SocketCliente(JFrame frame, String adress, int port) {
         this.frame = frame;
-        this.port=port;
-        this.adress=adress;
+        this.port = port;
+        this.adress = adress;
     }
 
     @Override
@@ -57,8 +82,10 @@ public class SocketCliente extends Thread {
             while (isListening) {
                 fromServer = (String) in.readObject();
                 System.out.println("Server: " + fromServer);
-
-                invokeToGUI(fromServer);
+                this.setChanged();
+                this.notifyObservers(fromServer);
+                this.clearChanged();
+                // invokeToGUI(fromServer);
             }
             System.out.println("cerrando conexion ");
             out.close();
@@ -66,14 +93,14 @@ public class SocketCliente extends Thread {
             kkSocket.close();
 
         } catch (IOException | ClassNotFoundException ex) {
-            
+
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     public void cerrarConexion() throws IOException {
-        
+
         out.close();
         in.close();
         kkSocket.close();
@@ -85,26 +112,24 @@ public class SocketCliente extends Thread {
             @Override
             public void run() {
 
-                frame.procesInput(cadena);
+                //  frame.procesInput(cadena);
             }
         });
     }
 
     public synchronized void sendRemote(String cadena) {
 
-        System.out.println("cliente send to server:" + cadena);
-
         try {
+            System.out.println("cliente send to server:" + cadena);
 
-            this.out.writeUnshared(cadena);
+            this.out.writeUnshared(cadena); // Cute use of iterator and exceptions --
+            // drop that socket from list if have probs with it
             this.out.flush();
             // writeUnshared() is like writeObject(), but always writes
             // a new copy of the object. The flush (optional) forces the
             // bytes out right now.
         } catch (IOException ex) {
-            // Cute use of iterator and exceptions --
-            // drop that socket from list if have probs with it
-
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

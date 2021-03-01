@@ -78,6 +78,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
         jLabel5.setText("LONGITUD FIJA");
 
+
         jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +87,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JSON", "DELIMITER" }));
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

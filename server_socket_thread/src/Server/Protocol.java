@@ -31,6 +31,9 @@ public Protocol(){
 
     public String processInput(String cadena) {
         System.out.println("procesando input");
+        
+        //el mensaje es de json  y selo kiere enviar a cadena
+        //return jsontocade.interprete(cadena)
          
          
         return  cadenaExpression.interpret(cadena);

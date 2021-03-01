@@ -39,7 +39,7 @@ public class MultiServerThread extends Thread {
         System.out.println("se ha conectado un cliente");
         this.socket = socket;
         this.output= new ObjectOutputStream(socket.getOutputStream());
-       
+      
   
     }
 
@@ -63,7 +63,7 @@ public class MultiServerThread extends Thread {
               
               input = (String) in.readObject(); 
               clientes.add(new ClienteServer(this.socket, this.output,input));
-            System.out.println("su nombre es:->"+input);
+           
              
                 while (( input = (String) in.readObject())!=null) {
                    

@@ -79,7 +79,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
         jLabel5.setText("LONGITUD FIJA");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CADENA", "JSON", "DELIMITER", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

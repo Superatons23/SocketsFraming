@@ -5,6 +5,8 @@
  */
 package delimiter;
 
+import Vistas.JFrameDelimite;
+
 /**
  *
  * @author javie
@@ -15,7 +17,16 @@ public class Delimiter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JFrameDelimite i = new JFrameDelimite();
+        i.startThread();
+        i.setVisible(true);
+        i.agregarObserver();
+        try {
+            Thread.sleep(1000);
+            i.registrarNombre();
+
+        } catch (InterruptedException e) {
+        }
     }
-    
+
 }

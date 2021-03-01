@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ClienteServer implements Runnable {
 
     private final Socket socket;
-    private String blackBoardObject;
+    private String data;
     private final ObjectOutputStream output;
     private String nombre;
 
@@ -28,14 +28,19 @@ public class ClienteServer implements Runnable {
         this.nombre=nombre;
     }
 
-    public String getClienteBBO() {
-        return blackBoardObject;
+    public String getData() {
+        return data;
     }
 
-    public void setClienteBBO(String persona) {
-        this.blackBoardObject = persona;
+    public void setData(String persona) {
+        this.data = persona;
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
+
+    
     @Override
     public void run() {
 
@@ -43,7 +48,7 @@ public class ClienteServer implements Runnable {
           
           
         
-           this.output.writeObject(getClienteBBO());
+           this.output.writeObject(getData());
            this.output.flush();
             
 
@@ -59,6 +64,8 @@ public class ClienteServer implements Runnable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    
     
     
 }

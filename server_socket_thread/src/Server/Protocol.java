@@ -8,7 +8,7 @@ package Server;
 
 import java.util.ArrayList;
 import java.util.List;
-import Dominio.Persona;
+import dominio.Mensaje;
 import Server.Interpreter.CadenaExpression;
 import Server.Interpreter.Expression;
 
@@ -31,8 +31,11 @@ public Protocol(){
 
     public String processInput(String cadena) {
         System.out.println("procesando input");
-         
-         
+        
+        
+        
+                //el mensaje es de json  y selo kiere enviar a cadena
+        //return jsontocade.interprete(cadena)
         return  cadenaExpression.interpret(cadena);
     
 }

@@ -6,7 +6,6 @@
 package InterfazGrafica;
 
 import socketcliente.SocketCliente;
-import Dominio.Persona;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class FrmMain extends javax.swing.JFrame implements Observer{
 
-    private Persona persona;
+
     private final SocketCliente clienteSocket;
     Thread t;
 
@@ -86,7 +85,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JSON", "DELIMITER" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,7 +136,8 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
 
-        clienteSocket.sendRemote(this.jTextField1.getText());
+       String cadena="javier"+","+jComboBox1.getSelectedItem().toString()+","+jTextField1.getText();
+        clienteSocket.sendRemote(cadena);
 
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 

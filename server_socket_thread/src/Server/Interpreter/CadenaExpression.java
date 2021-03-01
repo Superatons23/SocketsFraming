@@ -5,7 +5,8 @@
  */
 package Server.Interpreter;
 
-import Dominio.Persona;
+import dominio.Mensaje;
+import org.json.JSONObject;
 
 /**
  *
@@ -23,11 +24,16 @@ public class CadenaExpression  implements Expression
             System.out.println(arrSplit[i]);
         }
         
-        Persona p = new Persona(arrSplit[0],Float.valueOf(arrSplit[1]),Float.valueOf(arrSplit[2]));
+        Mensaje  m = new Mensaje(arrSplit[0],arrSplit[1],arrSplit[2]);
         
-        p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
+        //p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
+         JSONObject jsonObject = new JSONObject(m);
+         String json = jsonObject.toString();
          
-        return String.valueOf(p.getNombre())+","+String.valueOf(p.getEstatura())+","+String.valueOf(p.getPeso())+","+String.valueOf(p.getIMC());
+
+        //return String.valueOf(m.getFrom())+","+String.valueOf(m.getTo())+","+String.valueOf(m.getMensaje());
+       return json;
+   
     }
 
 

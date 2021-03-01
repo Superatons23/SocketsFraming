@@ -5,7 +5,6 @@
  */
 package Vistas;
 
-import Dominio.Persona;
 import dominio.Mensaje;
 import felimframer.DeliFramer;
 import felimframer.Framer;

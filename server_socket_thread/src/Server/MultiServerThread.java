@@ -31,8 +31,8 @@ public class MultiServerThread extends Thread {
     public static final ArrayList<ClienteServer> clientes = new ArrayList<>();
 
     public MultiServerThread(Socket socket) throws IOException {
-        super("patolliServer");
-        System.out.println("se ha conectado un cliente");
+        super("m");
+      
         this.socket = socket;
         this.output = new ObjectOutputStream(socket.getOutputStream());
 
@@ -52,14 +52,15 @@ public class MultiServerThread extends Thread {
 
             //agrega al cliente
             from = (String) in.readObject();
-            clientes.add(new ClienteServer(this.socket, this.output, input));
+             System.out.println("se ha conectado "+from);
+            clientes.add(new ClienteServer(this.socket, this.output, from));
 
             String to;
             while ((input = (String) in.readObject()) != null) {
                 to = input;
                 input = (String) in.readObject();
                 this.cadena = kkp.processInput(input, to,from);
-                transmitirATodos();
+                transmitirAto(to);
                 
                 
 
@@ -77,12 +78,15 @@ public class MultiServerThread extends Thread {
 
     }
 
-    public void transmitirATodos() {
+    public void transmitirAto(String to) {
 
         for (ClienteServer sockets : clientes) {
-            System.out.println("enviando data to client");
+            if(sockets.getNombre().equals(to)){
+                System.out.println("enviando data to client");
             sockets.setClienteBBO(this.cadena);
             sockets.run();
+            }
+            
 
         }
 

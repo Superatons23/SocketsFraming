@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  */
 public class ClienteServer implements Runnable {
 
-    private Socket socket;
+    private final Socket socket;
     private String blackBoardObject;
-    private ObjectOutputStream output;
+    private final ObjectOutputStream output;
     private String nombre;
 
     public ClienteServer(Socket socket, ObjectOutputStream output,String nombre) {
@@ -44,10 +44,21 @@ public class ClienteServer implements Runnable {
           
         
            this.output.writeObject(getClienteBBO());
+           this.output.flush();
             
 
         } catch (IOException ex) {
             Logger.getLogger(ClienteServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 }

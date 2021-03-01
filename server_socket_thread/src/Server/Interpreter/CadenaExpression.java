@@ -23,8 +23,8 @@ public class CadenaExpression  implements Expression
         for (int i = 0; i < arrSplit.length; i++) {
             System.out.println(arrSplit[i]);
         }
-        
-        Mensaje  m = new Mensaje(arrSplit[0],arrSplit[1],arrSplit[2]);
+        System.out.println(arrSplit[1]+" "+arrSplit[0]+" "+arrSplit[2]);
+        Mensaje  m = new Mensaje(arrSplit[1],arrSplit[0],arrSplit[2]);
         
         //p.setIMC(p.getPeso()/(p.getEstatura()*p.getEstatura()));
          JSONObject jsonObject = new JSONObject(m);

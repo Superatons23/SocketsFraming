@@ -21,11 +21,7 @@ public class JSONtoFijaExpression  implements Expression
      //code
      Mensaje m;
     final JSONObject obj = new JSONObject(context);
-      System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
-      System.out.println(obj.getString("mensaje"));
-      System.out.println(obj.getString("from"));
-      System.out.println(obj.getString("to"));
-      System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    
       m=new Mensaje(obj.getString("to"), obj.getString("from"), obj.getString("mensaje"));
       
     

@@ -41,7 +41,7 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
       this.clienteSocket.agregarObserver(this);
  }
     public void registrarNombre() {
-        clienteSocket.sendRemote("javier");
+        clienteSocket.sendRemote("Longitud Fija");
     }
 
     /**
@@ -138,7 +138,8 @@ public class FrmMain extends javax.swing.JFrame implements Observer{
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
 
-       String cadena="javier"+","+jComboBox1.getSelectedItem().toString()+","+jTextField1.getText();
+       String cadena="Longitud Fija"+","+jComboBox1.getSelectedItem().toString()+","+jTextField1.getText();
+        clienteSocket.sendRemote(jComboBox1.getSelectedItem().toString());
         clienteSocket.sendRemote(cadena);
 
     }//GEN-LAST:event_jButtonEnviarActionPerformed

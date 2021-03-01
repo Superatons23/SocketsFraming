@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import Dominio.Persona;
 import Server.Interpreter.CadenaExpression;
+import Server.Interpreter.DelimiterToCadena;
+import Server.Interpreter.DelimiterToJson;
 import Server.Interpreter.Expression;
 
 /**
@@ -22,21 +24,29 @@ public class Protocol {
      *
      * @param persona
      */
-    Expression cadenaExpression;
+    Expression expression;
 public Protocol(){
-      cadenaExpression = new  CadenaExpression();
+      //cadenaExpression = new  CadenaExpression();
 }
   
   
 
-    public String processInput(String cadena) {
-        System.out.println("procesando input");
+    public String processInput(String cadena,String to,String from) {
+      
         
+        if(to.equals("CADENA")&&from.equals("delimiter"))
+        {
+             expression = new DelimiterToCadena();
+            return expression.interpret(cadena);
+        }else if(to.equals("JSON")&&from.equals("delimiter")){
+            expression = new DelimiterToJson();
+            return expression.interpret(cadena);
+        }
         //el mensaje es de json  y selo kiere enviar a cadena
         //return jsontocade.interprete(cadena)
          
          
-        return  cadenaExpression.interpret(cadena);
+        return  null;
     
 }
 }

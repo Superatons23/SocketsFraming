@@ -16,6 +16,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +33,7 @@ public class MultiServerThread extends Thread {
 
     public MultiServerThread(Socket socket) throws IOException {
         super("m");
-      
+
         this.socket = socket;
         this.output = new ObjectOutputStream(socket.getOutputStream());
 
@@ -52,17 +53,15 @@ public class MultiServerThread extends Thread {
 
             //agrega al cliente
             from = (String) in.readObject();
-             System.out.println("se ha conectado "+from);
+            System.out.println("se ha conectado " + from);
             clientes.add(new ClienteServer(this.socket, this.output, from));
 
             String to;
             while ((input = (String) in.readObject()) != null) {
                 to = input;
                 input = (String) in.readObject();
-                this.cadena = kkp.processInput(input, to,from);
+                this.cadena = kkp.processInput(input, to, from);
                 transmitirAto(to);
-                
-                
 
             }
             System.out.println("se ha ido un cliente");
@@ -81,12 +80,17 @@ public class MultiServerThread extends Thread {
     public void transmitirAto(String to) {
 
         for (ClienteServer sockets : clientes) {
-            if(sockets.getNombre().equals(to)){
+            if (sockets.getNombre().equals(to)) {
                 System.out.println("enviando data to client");
-            sockets.setClienteBBO(this.cadena);
-            sockets.run();
+                if (sockets.getSocket().isClosed()) {
+                    JOptionPane.showMessageDialog(null, "El cliente " + to + " no esta disponible actualmente");
+                    System.out.println("este cliente esta cerrado");
+                } else {
+                    sockets.setData(this.cadena);
+                    sockets.run();
+                }
+
             }
-            
 
         }
 
